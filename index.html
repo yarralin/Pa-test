@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>國曆陰曆轉換App</title>
+    <style>
+        body { font-family: 'Microsoft JhengHei', sans-serif; max-width: 500px; margin: 50px auto; padding: 20px; }
+        input, button { padding: 10px; margin: 5px; font-size: 16px; }
+        #result { margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>國曆 ↔ 陰曆轉換</h1>
+    <label>年: <input type="number" id="year" min="1900" max="2100" value="2025"></label>
+    <label>月: <input type="number" id="month" min="1" max="12" value="12"></label>
+    <label>日: <input type="number" id="day" min="1" max="31" value="19"></label>
+    <br>
+    <button onclick="toLunar()">轉陰曆</button>
+    <button onclick="toSolar()">轉國曆</button>
+    <div id="result"></div>
+
+    <script>
+        // 農曆資料表 (1900-2100，簡化版，從web:1參考)
+        const lunarInfo = new Array(
+            0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+            // ... 完整表需擴充，範例省略部分，實際使用可從web:1完整複製
+            0x0a5b0,0x052b0,0x0a950,0x0e950,0x06aa0 // 示例至2025
+        );
+        const START_YEAR = 1900;
+
+        function solar2lunar(year, month, day) {
+            let days = 0, leap = 0;
+            // 簡化計算邏輯 (完整版參考web:1)
+            return `${year}年${month}月${day}日 (陰曆)`; // 實際替換為完整函數
+        }
+
+        function lunar2solar(lunarYear, lunarMonth, lunarDay) {
+            return `${lunarYear}年${lunarMonth}月${lunarDay}日 (國曆)`; // 實際替換
+        }
+
+        function toLunar() {
+            const year = parseInt(document.getElementById('year').value);
+            const month = parseInt(document.getElementById('month').value);
+            const day = parseInt(document.getElementById('day').value);
+            const result = document.getElementById('result');
+            result.innerHTML = `陰曆: ${solar2lunar(year, month, day)}`[web:1];
+        }
+
+        function toSolar() {
+            const year = parseInt(document.getElementById('year').value);
+            const month = parseInt(document.getElementById('month').value);
+            const day = parseInt(document.getElementById('day').value);
+            const result = document.getElementById('result');
+            result.innerHTML = `國曆: ${lunar2solar(year, month, day)}`[web:1];
+        }
+    </script>
+</body>
+</html>
